@@ -1,0 +1,27 @@
+
+name: Windows 11 - Iperius Remote By IjazC
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Start Building...
+    runs-on: windows-2025
+    timeout-minutes: 9999
+
+    steps:
+      - name: Downloading & Installing Essentials
+        shell: powershell
+        run: |
+          Invoke-WebRequest -Uri "https://gitlab.com/saify/Iperius_RDP_Windows11_by_Ijaz_C/-/raw/main/down.bat" -OutFile "Downloads.bat"
+          Start-Process -FilePath "cmd.exe" -ArgumentList "/c Downloads.bat" -Wait
+
+      - name: Connect to Iperius Remote
+        shell: cmd
+        run: show.bat
+
+      - name: Time Counter
+        shell: cmd
+        run: loop.bat
+
